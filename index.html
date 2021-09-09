@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>index.knit</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Oregon Evictions</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://html5-templates.com/" />
+<title>
+Bootstrap Template
+</title>
+<meta name="description" content="A minimalist Bootstrap theme by StartBootstrap. Contains everything you need to get started building your website. All you have to do is change the text and images.">
+<link href="css/bootstrap.min.css" rel="stylesheet"> <link href="css/modern-business.css" rel="stylesheet"> <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<style>
+.content {
+  max-width: 1000px;
+  margin: auto;
+}
+
+
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+</button>
+<p><a class="navbar-brand" href="index.html">Oregon Eviction Research</a></p>
+</div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href="about.html">About</a>
+</li>
+<li>
+<a href="FAQ.html">FAQ</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Data Vis <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li>
+<a href="portfolio-1-col.html">1 Column Portfolio</a>
+</li>
+<li>
+<a href="portfolio-2-col.html">2 Column Portfolio</a>
+</li>
+<li>
+<a href="portfolio-3-col.html">3 Column Portfolio</a>
+</li>
+<li>
+<a href="portfolio-4-col.html">4 Column Portfolio</a>
+</li>
+<li>
+<a href="portfolio-item.html">Single Portfolio Item</a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Community Partners <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li>
+<a href="blog-home-1.html">Blog Home 1</a>
+</li>
+<li>
+<a href="blog-home-2.html">Blog Home 2</a>
+</li>
+<li>
+<a href="blog-post.html">Blog Post</a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard Versions <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://orevictions.shinyapps.io/OJD_Evictions/">Shiny V1</a>
+</li>
+<li>
+<a href="sidebar.html">Sidebar Page</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+<li>
+<a href="404.html">404</a>
+</li>
+<li>
+<a href="pricing.html">Pricing Table</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+<!-- Header Carousel -->
+<header>
+<h1 style="text-align:center;">
+OREGON EVICTION DATA
+</h1>
+<p style="text-align:center;">
+Evictions filings data sourced from OJCIN Online
+</p>
+<h4 style="text-align:center;">
+Last Updated: Sep 03 2021
+</h4>
+</header>
+<!-- Page Content -->
+<div class="content">
+
+<div class="row products">
+<div class="col-lg-12">
+<h2 class="page-header", style="text-align:center;"> In the Month of September 2021 </h2>
+</div>
+<div class="col-sm-6 col-lg-6 col-md-6">
+<div class="thumbnail">
+<div>
+<h3 style="text-align:center;">
+116
+</h3>
+<h4 style="text-align:center;">
+<a href="#">New Eviction Cases <br> were Initiated by Landlords</a>
+</h4>
+<hr>
+</hr>
+<!-- <h3 style="text-align:center;">BLANK</h3> -->
+<!-- <h4 style="text-align:center;"> <a href="#">for nonpayment of rent</a></h4> -->
+<!-- <hr></hr> -->
+<!-- <h3 style="text-align:center;">BLANK</h3> -->
+<!-- <h4 style="text-align:center;"> <a href="#">for lease violations</a></h4> -->
+</div>
+</div>
+</div>
+<div class="col-sm-6 col-lg-6 col-md-6">
+<div class="thumbnail">
+<div>
+<h3 style="text-align:center;">
+26
+</h3>
+<h4 style="text-align:center;">
+<a href="#">Tenant Households <br> were Evicted</a>
+</h4>
+<hr>
+</hr>
+<h3 style="text-align:center;">
+39
+</h3>
+<h4 style="text-align:center;">
+<a href="#">Tenant Households <br> had their case dismissed</a>
+</h4>
+</div>
+</div>
+</div>
+</div>
+<div class="row products">
+<div class="col-lg-12">
+<h2 class="page-header", style="text-align:center;"> Between April 2020 and Sep 03 2021 </h2>
+</div>
+<div class="col-sm-4 col-lg-4 col-md-4">
+<div class="thumbnail">
+<div>
+<h3 style="text-align:center;">
+6750
+</h3>
+<h4 style="text-align:center;">
+<a href="#">Eviction Cases <br> Initiated by Landlords</a>
+</h4>
+<hr>
+</hr>
+<h3 style="text-align:center;">
+2825
+</h3>
+<h4 style="text-align:center;">
+<a href="#">tenant Households <br> were evicted</a>
+</h4>
+<hr>
+</hr>
+<h3 style="text-align:center;">
+3289
+</h3>
+<h4 style="text-align:center;">
+<a href="#">Tenant Households <br> had their case dismissed </a>
+</h4>
+<hr>
+</hr>
+<h3 style="text-align:center;">
+1288
+</h3>
+<h4 style="text-align:center;">
+<a href="#">Cases Remain Open</a>
+</h4>
+</div>
+</div>
+</div>
+<div class="col-sm-8 col-lg-8 col-md-8">
+<div id="htmlwidget-897b21b35547edea2a90" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-897b21b35547edea2a90">{"x":{"visdat":{"d5418e92834":["function () ","plotlyVisDat"]},"cur_data":"d5418e92834","attrs":{"d5418e92834":{"x":{},"y":{},"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"d5418e92834.1":{"x":"2020-03-01","y":1000,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","showlegend":false,"inherit":true},"d5418e92834.2":{"x":"2020-03-01","y":0,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","xend":"2020-03-01","yend":1600,"mode":"lines","line":{"dash":"dash"},"inherit":true},"d5418e92834.3":{"x":"2020-09-01","y":500,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","showlegend":false,"inherit":true},"d5418e92834.4":{"x":"2020-09-01","y":0,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","xend":"2020-09-01","yend":1600,"mode":"lines","line":{"dash":"dash"},"inherit":true},"d5418e92834.5":{"x":"2020-12-01","y":750,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","showlegend":false,"inherit":true},"d5418e92834.6":{"x":"2020-12-01","y":0,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","xend":"2020-12-01","yend":1600,"mode":"lines","line":{"dash":"dash"},"inherit":true},"d5418e92834.7":{"x":"2021-06-01","y":950,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","showlegend":false,"inherit":true},"d5418e92834.8":{"x":"2021-06-01","y":0,"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","xend":"2021-06-01","yend":1600,"mode":"lines","line":{"dash":"dash"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Oregon Evictions - Filings per Month since Jan 20'","showlegend":false,"xaxis":{"domain":[0,1],"automargin":true,"title":""},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Cases"},"annotations":[{"text":"EO 20-13 Goes into effect <br> HB 4213 Goes into effect <br> (retroactive)","x":"2020-03-01","y":1000,"xref":"x","yref":"y","xanchor":"left","bgcolor":"white","bordercolor":"black"},{"text":"HB 4213 Emergency Period Ends <br> EO 20-56 Goes into effect","x":"2020-09-01","y":500,"xref":"x","yref":"y","xanchor":"center","bgcolor":"white","bordercolor":"black"},{"text":"EO 20-56 Emergency Period Ends <br> HB 4401 Goes into effect","x":"2020-12-01","y":750,"xref":"x","yref":"y","xanchor":"center","bgcolor":"white","bordercolor":"black"},{"text":"HB 4401 Emergency Period Ends <br> SB 278 Goes into effect","x":"2021-06-01","y":950,"xref":"x","yref":"y","xanchor":"center","bgcolor":"white","bordercolor":"black"}],"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false,"displayModeBar":false},"data":[{"x":["2020-01-01","2020-02-01","2020-03-01","2020-04-01","2020-05-01","2020-06-01","2020-07-01","2020-08-01","2020-09-01","2020-10-01","2020-11-01","2020-12-01","2021-01-01","2021-02-01","2021-03-01","2021-04-01","2021-05-01","2021-06-01","2021-07-01","2021-08-01","2021-09-01"],"y":[1161,942,519,98,153,216,278,309,308,350,321,311,361,348,476,468,429,476,802,930,116],"hovertemplate":["%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}"],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020-03-01"],"y":[1000],"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","type":"scatter","mode":"markers","showlegend":false,"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020-03-01","2020-03-01"],"y":[0,1600],"hovertemplate":["%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}"],"type":"scatter","mode":"lines","line":{"color":"rgba(44,160,44,1)","dash":"dash"},"marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020-09-01"],"y":[500],"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","type":"scatter","mode":"markers","showlegend":false,"marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"line":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020-09-01","2020-09-01"],"y":[0,1600],"hovertemplate":["%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}"],"type":"scatter","mode":"lines","line":{"color":"rgba(148,103,189,1)","dash":"dash"},"marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020-12-01"],"y":[750],"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","type":"scatter","mode":"markers","showlegend":false,"marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"line":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020-12-01","2020-12-01"],"y":[0,1600],"hovertemplate":["%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}"],"type":"scatter","mode":"lines","line":{"color":"rgba(227,119,194,1)","dash":"dash"},"marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2021-06-01"],"y":[950],"hovertemplate":"%{yaxis.title.text}: %{y}<br> %{x}","type":"scatter","mode":"markers","showlegend":false,"marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"line":{"color":"rgba(127,127,127,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2021-06-01","2021-06-01"],"y":[0,1600],"hovertemplate":["%{yaxis.title.text}: %{y}<br> %{x}","%{yaxis.title.text}: %{y}<br> %{x}"],"type":"scatter","mode":"lines","line":{"color":"rgba(188,189,34,1)","dash":"dash"},"marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="row products">
+<div class="col-sm-6 col-lg-6 col-md-6">
+<h2 class="page-header", style="text-align:center;"> By Location </h2>
+<!-- Tab links -->
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;county&#39;)">
+County
+</button>
+<button class="tablinks" onclick="openCity(event, &#39;zipcode&#39;)">
+Zip Code
+</button>
+</div>
+<div id="county" class="tabcontent">
+<div id="htmlwidget-0f67313cc78377da9e85" style="width:100%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0f67313cc78377da9e85">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircles","args":[[43.9152246189552,44.491567481601,42.4566900584777,45.3098270197321,45.4048095059388,45.5471572140174,45.9949369756458,42.3649855765148,44.6298961227437,43.9396750302949,44.4907993609019,43.2793476736683,43.1862748063526,44.4891843467477,44.9036473164635,45.1594480378315,45.3776885077317,44.7091785119095,42.4315040689876,42.6837361531464,45.5599826152215,45.5188108645943,45.9436601915566,43.1735213361017,44.1421316019072,45.5793223735611,45.2326576151946,43.0600788274094,44.7255294093825,45.5911412431129,44.9034914058691,45.4181714180596,45.4631462119647,44.6413130563929,45.1880134243546,42.7910458889937],[-121.226814554681,-123.429526350452,-124.156276326088,-118.009041463017,-120.689463237726,-122.414408134891,-123.655863281983,-123.555433854567,-121.176678775415,-122.846192394315,-119.007425636855,-123.164810402016,-117.623035474891,-122.535030923799,-122.583756180045,-121.167527305687,-120.210590114223,-117.676409842744,-122.728920236856,-121.649245577584,-123.098073650027,-121.650927387094,-123.08808987639,-124.059422586134,-120.35564718756,-117.180230906094,-123.308413545379,-118.966605622023,-120.027109097964,-118.737493528463,-123.413262316674,-119.583753703233,-123.713020029915,-123.868288027206,-122.220712580712,-120.38416044769],[7540,2680,1520,1380,20,33340,2460,6120,1280,18420,20,6640,680,5760,20700,960,null,80,14780,8400,23460,null,1960,4780,1780,200,4120,null,60,4140,3220,220,920,2760,6180,500],null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":1,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["Deschutes County, Oregon <br/> 377 Filings","Benton County, Oregon <br/> 134 Filings","Curry County, Oregon <br/> 76 Filings","Union County, Oregon <br/> 69 Filings","Sherman County, Oregon <br/> 1 Filings","Multnomah County, Oregon <br/> 1667 Filings","Clatsop County, Oregon <br/> 123 Filings","Josephine County, Oregon <br/> 306 Filings","Jefferson County, Oregon <br/> 64 Filings","Lane County, Oregon <br/> 921 Filings","Grant County, Oregon <br/> 1 Filings","Douglas County, Oregon <br/> 332 Filings","Malheur County, Oregon <br/> 34 Filings","Linn County, Oregon <br/> 288 Filings","Marion County, Oregon <br/> 1035 Filings","Wasco County, Oregon <br/> 48 Filings","Gilliam County, Oregon <br/> NA Filings","Baker County, Oregon <br/> 4 Filings","Jackson County, Oregon <br/> 739 Filings","Klamath County, Oregon <br/> 420 Filings","Washington County, Oregon <br/> 1173 Filings","Hood River County, Oregon <br/> NA Filings","Columbia County, Oregon <br/> 98 Filings","Coos County, Oregon <br/> 239 Filings","Crook County, Oregon <br/> 89 Filings","Wallowa County, Oregon <br/> 10 Filings","Yamhill County, Oregon <br/> 206 Filings","Harney County, Oregon <br/> NA Filings","Wheeler County, Oregon <br/> 3 Filings","Umatilla County, Oregon <br/> 207 Filings","Polk County, Oregon <br/> 161 Filings","Morrow County, Oregon <br/> 11 Filings","Tillamook County, Oregon <br/> 46 Filings","Lincoln County, Oregon <br/> 138 Filings","Clackamas County, Oregon <br/> 309 Filings","Lake County, Oregon <br/> 25 Filings"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[42.3649855765148,45.9949369756458],"lng":[-124.156276326088,-117.180230906094]},"setView":[[44,-120.5],7,[]]},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;county&#39;)">
+County
+</button>
+<button class="tablinks" onclick="openCity(event, &#39;zipcode&#39;)">
+Zip Code
+</button>
+</div>
+<div class="col-sm-6 col-lg-6 col-md-6">
+<h2 class="page-header", style="text-align:center;"> Who has a Lawyer in Court </h2>
+<p>
+Legal representation is not provided by the courts for civil proceedings, including evictions. In July 2021, several programs in Multnomah began making legal representation more available to tenants
+</p>
+<div id="htmlwidget-d146a5c651a478561c51" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d146a5c651a478561c51">{"x":{"visdat":{"d54745e268":["function () ","plotlyVisDat"]},"cur_data":"d54745e268","attrs":{"d54745e268":{"x":{},"y":{},"name":"Landlord","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"d54745e268.1":{"x":{},"y":{},"name":"Tenant","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"width":500,"height":500,"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":"Percent With Lawyer","tickformat":"%"},"barmode":"group","xaxis":{"domain":[0,1],"automargin":true,"title":"","autorange":"reversed","type":"category","categoryorder":"array","categoryarray":["Multnomah","Oregon"]},"legend":{"title":{"text":"<b> Who has a Lawyer <\/b>"}},"autosize":false,"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["Multnomah","Oregon"],"y":[0.721655668866227,0.401515151515151],"name":"Landlord","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Multnomah","Oregon"],"y":[0.110377924415117,0.103393085787452],"name":"Tenant","type":"bar","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<h3 class="page-header", style="text-align:center;"> Breakdown by County: Court Data, Rental Units, and Demographic Information </h3>
+<iframe width="1000" height="500" src="countyTable.html" title="County Data Table">
+</iframe>
+<hr>
+<!-- Call to Action Section -->
+<div class="well">
+<div class="row">
+<div class="col-md-8">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.
+</p>
+</div>
+<div class="col-md-4">
+<p><a class="btn btn-lg btn-primary btn-block" href="#">Call to Action</a></p>
+</div>
+</div>
+</div>
+<hr>
+<!-- Footer -->
+<footer>
+<div class="row">
+<div class="col-lg-12">
+<p>
+Copyright © Your Website, year | <a href="https://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
+</p>
+</div>
+</div>
+</footer>
+</div>
+<!-- /.container -->
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Script to Activate the Carousel -->
+<script>
+$('.carousel').carousel({
+interval: 5000 //changes the speed
+})
+</script>
+</body>
+</html>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
