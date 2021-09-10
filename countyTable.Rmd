@@ -1,0 +1,42 @@
+---
+title: ""
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(plotly)
+library(ggplot2)
+library(shinydashboard)
+library(leaflet)
+library(DT)
+source("loadGlobals.R")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+flat_file %>%
+            group_by(location) %>% 
+            summarize(Filings = n(), Dismissals = sum(na.omit(Judgment_Dismissal) == 1), 
+                      `Judgments to Evict` = sum(na.omit(Judgment_General) == 1),
+                      `Open Cases` = sum(status == "Open"),
+                      `Landlord has Lawyer` = sum(na.omit(landlord_has_lawyer) == 1),
+                      `Tenant has Lawyer` = sum(na.omit(tenant_has_lawyer) == 1)) %>%
+        add_row(location = "Oregon",
+                Filings = sum(.$Filings), 
+                Dismissals = sum(.$Dismissals),
+                `Judgments to Evict` = sum(.$`Judgments to Evict`),
+                `Open Cases` = sum(.$`Open Cases`),
+                `Landlord has Lawyer` = sum(.$`Landlord has Lawyer`),
+                `Tenant has Lawyer` = sum(.$`Tenant has Lawyer`)) %>% 
+            inner_join(CountyDataACS %>% select(NAME, Renter_Occupied, pPov, pNotWhite, pRenter), 
+                      by = c("location" = "NAME")) %>% 
+            mutate(`Filings per 100 Rental Units` = round(Filings/(Renter_Occupied*.01), 3)) %>% 
+            rename(`Percent POC` = pNotWhite,
+                   `Percent Renter Occupied Units` = pRenter,
+                   `Poverty Rate` = pPov,
+                   Location = location,
+                   `Number of Renter Occupied Units` = Renter_Occupied) %>% 
+  datatable(options = list(columnDefs = list(list(className = 'dt-left', targets = "_all"))))
+
+```
